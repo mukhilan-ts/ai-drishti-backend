@@ -1,3 +1,6 @@
+from app.copilot.context_builder import build_well_context
+from app.copilot.llm_client import answer_question
+
 """
 AI-DRISHTI — Main FastAPI Application
 ----------------------------------------
@@ -640,16 +643,7 @@ async def copilot_ask(req: CopilotRequest):
     connected here.
     """
 
-    try:
-
-        from app.copilot import answer_question, build_well_context
-
-    except ImportError:
-
-        raise HTTPException(
-            status_code=500,
-            detail="Copilot module is not available.",
-        )
+    
 
 
     ctx = build_well_context(
@@ -885,3 +879,4 @@ if __name__ == "__main__":
         port=8000,
         reload=True,
     )
+
